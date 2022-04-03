@@ -1,36 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PNG/Meteors/meteorGrey_big1.png" type="Texture" id=1]
 [ext_resource path="res://Asteroide.gd" type="Script" id=3]
 
-[sub_resource type="GDScript" id=3]
-
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "gran",
+"name": "default",
 "speed": 5.0
 } ]
-script = SubResource( 3 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 41.0
+radius = 41.0122
 
 [node name="Asteroide" type="RigidBody2D"]
-position = Vector2( 134, 290 )
-collision_layer = 0
+position = Vector2( 343, 368 )
 collision_mask = 0
 mass = 0.01
 gravity_scale = 0.0
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 velocitat_min = 150
 velocitat_max = 200
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.5, 0 )
-frames = SubResource( 1 )
-animation = "gran"
+frames = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -4, -3 )
@@ -41,4 +38,6 @@ __meta__ = {
 
 [node name="Visibilitat" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="ready" from="AnimatedSprite" to="." method="_on_AnimatedSprite_ready"]
+[connection signal="ready" from="CollisionShape2D" to="." method="_on_CollisionShape2D_ready"]
 [connection signal="screen_exited" from="Visibilitat" to="." method="_on_Visibilitat_screen_exited"]

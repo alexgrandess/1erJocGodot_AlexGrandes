@@ -30,12 +30,14 @@ func _process(delta):
 	position.y = clamp(position.y, 0, limit.y) 
 
 
-func _on_Jugador_body_entered():
-	hide()
-	emit_signal('xoc')
-	$CollisionShape2D.disabled = true 
-
 func inici(pos):
 	position = pos 
 	show()
 	$CollisionShape2D.disabled = false;
+
+
+func _on_Jugador_body_entered(_body):
+	hide()
+	emit_signal('xoc')
+	
+
